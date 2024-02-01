@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: excel_scheduler
+      POSTGRES_USER: seu_usuario
+      POSTGRES_PASSWORD: sua_senha
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # backend:
+  #   build: ./backend
+  #   command: php artisan serve --host=0.0.0.0 --port=8000
+  #   environment:
+  #     DB_CONNECTION: pgsql
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_DATABASE: excel_scheduler
+  #     DB_USERNAME: seu_usuario
+  #     DB_PASSWORD: sua_senha
+  #   ports:
+  #     - '8000:8000'
+  #   depends_on:
+  #     - postgres
+  #   volumes:
+  #     - ./backend:/var/www/html
+
+  # frontend:
+  #   build: ./frontend
+  #   command: npm run dev
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - backend
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+
+volumes:
+  postgres_data:
